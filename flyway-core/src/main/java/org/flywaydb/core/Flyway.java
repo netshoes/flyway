@@ -140,11 +140,11 @@ public class Flyway {
 
 
             ) {
-                if (configuration.isValidateOnMigrate()) {
-                    doValidate(database, migrationResolver, schemaHistory, schemas, callbackExecutor,
-                            true // Always ignore pending migrations when validating before migrating
-                    );
-                }
+//                if (configuration.isValidateOnMigrate()) {
+//                    doValidate(database, migrationResolver, schemaHistory, schemas, callbackExecutor,
+//                            true // Always ignore pending migrations when validating before migrating
+//                    );
+//                }
 
                 if (!schemaHistory.exists()) {
                     List<Schema> nonEmptySchemas = new ArrayList<>();

@@ -57,8 +57,8 @@ public class SQLServerApplicationLockTemplate {
     public <T> T execute(Callable<T> callable) {
         try {
             connection.setCurrentDatabase(databaseName);
-            jdbcTemplate.execute("EXEC sp_getapplock @Resource = ?, @LockTimeout='3600000'," +
-                    " @LockMode = 'Exclusive', @LockOwner = 'Session'", lockName);
+//            jdbcTemplate.execute("EXEC sp_getapplock @Resource = ?, @LockTimeout='3600000'," +
+//                    " @LockMode = 'Exclusive', @LockOwner = 'Session'", lockName);
             return callable.call();
         } catch (SQLException e) {
             throw new FlywaySqlException("Unable to acquire SQL Server application lock", e);
@@ -73,7 +73,7 @@ public class SQLServerApplicationLockTemplate {
         } finally {
             try {
                 connection.setCurrentDatabase(databaseName);
-                jdbcTemplate.execute("EXEC sp_releaseapplock @Resource = ?, @LockOwner = 'Session'", lockName);
+//                jdbcTemplate.execute("EXEC sp_releaseapplock @Resource = ?, @LockOwner = 'Session'", lockName);
             } catch (SQLException e) {
                 LOG.error("Unable to release SQL Server application lock", e);
             }

@@ -94,7 +94,7 @@ public class DatabaseFactory {
 
 
         );
-        database.ensureSupported();
+//        database.ensureSupported();
 
         if (!database.supportsChangingCurrentSchema() && configuration.getSchemas().length > 0) {
             LOG.warn(databaseProductName + " does not support setting the schema for the current session. " +

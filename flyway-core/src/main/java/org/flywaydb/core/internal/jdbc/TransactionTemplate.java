@@ -69,10 +69,10 @@ public class TransactionTemplate {
     public <T> T execute(Callable<T> transactionCallback) {
         boolean oldAutocommit = true;
         try {
-            oldAutocommit = connection.getAutoCommit();
-            connection.setAutoCommit(false);
+//            oldAutocommit = connection.getAutoCommit();
+//            connection.setAutoCommit(false);
             T result = transactionCallback.call();
-            connection.commit();
+//            connection.commit();
             return result;
         } catch (Exception e) {
             RuntimeException rethrow;

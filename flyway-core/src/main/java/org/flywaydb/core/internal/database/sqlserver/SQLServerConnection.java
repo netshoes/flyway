@@ -58,7 +58,7 @@ public class SQLServerConnection extends Connection<SQLServerDatabase> {
     }
 
     void setCurrentDatabase(String databaseName) throws SQLException {
-        jdbcTemplate.execute("USE " + database.quote(databaseName));
+//        jdbcTemplate.execute("USE " + database.quote(databaseName));
     }
 
 

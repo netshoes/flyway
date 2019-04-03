@@ -52,12 +52,7 @@ public class SQLServerDatabase extends Database<SQLServerConnection> {
 
 
         );
-        try {
-            azure = "SQL Azure".equals(getMainConnection().getJdbcTemplate().queryForString(
-                    "SELECT CAST(SERVERPROPERTY('edition') AS VARCHAR)"));
-        } catch (SQLException e) {
-            throw new FlywaySqlException("Unable to determine database edition", e);
-        }
+        azure = true;
     }
 
     @Override
@@ -209,12 +204,12 @@ public class SQLServerDatabase extends Database<SQLServerConnection> {
                 "    [script] NVARCHAR(1000) NOT NULL,\n" +
                 "    [checksum] INT,\n" +
                 "    [installed_by] NVARCHAR(100) NOT NULL,\n" +
-                "    [installed_on] DATETIME NOT NULL DEFAULT GETDATE(),\n" +
+                "    [installed_on] DATETIME NULL,\n" +
                 "    [execution_time] INT NOT NULL,\n" +
                 "    [success] BIT NOT NULL\n" +
                 ")" + filegroup + ";\n" +
                 (baseline ? getBaselineStatement(table) + ";\n" : "") +
-                "ALTER TABLE " + table + " ADD CONSTRAINT [" + table.getName() + "_pk] PRIMARY KEY ([installed_rank]);\n" +
+//                "ALTER TABLE " + table + " ADD CONSTRAINT [" + table.getName() + "_pk] PRIMARY KEY ([installed_rank]);\n" +
                 "CREATE INDEX [" + table.getName() + "_s_idx] ON " + table + " ([success]);\n" +
                 "GO\n";
     }
